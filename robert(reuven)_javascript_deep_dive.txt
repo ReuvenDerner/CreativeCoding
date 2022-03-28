@@ -1,0 +1,67 @@
+var ctx = document.getElementById('canvas').getContext('2d'),
+points = [],
+angleStep = 0.05; //controls how fast the star spins
+
+ctx.fillStyle = 'skyblue';
+
+// draw first star at angle 0 and get point array
+points = getStarPoints(0, 0, 80, 40, 10); 
+
+// animate the star
+loop();
+
+function loop() {
+
+// clear canvas
+ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+// rotate around one of the points of the star
+ctx.translate(points[1].x, points[1].y);
+ctx.rotate(angleStep);
+ctx.translate(-points[1].x, -points[1].y);
+
+// draw the Star
+ctx.beginPath();
+ctx.moveTo(points[0].x, points[0].y);
+for(var i = 1, p; p = points[i++];) ctx.lineTo(p.x, p.y);
+ctx.fill();
+
+requestAnimationFrame(loop);
+}
+//utility function
+// cx = center x
+// cy = center y
+// or = outer radius
+// ir = inner radius
+// spikes = number of star "spikes"
+function getStarPoints(cx, cy, or, ir, spikes) {
+
+var i = 0,
+    deltaAngle = (2 * Math.PI) / spikes,
+    x, y,
+    points = [];
+
+// calculate rest of points
+for (; i < spikes; i++) {
+    points.push(
+        {
+            x: cx + ir * Math.cos(deltaAngle * i),               // calc inner point
+            y: cy + ir * Math.sin(deltaAngle * i)
+        }, {
+            x: cx + or * Math.cos(deltaAngle * i + deltaAngle * 0.5), // outer point
+            y: cy + or * Math.sin(deltaAngle * i + deltaAngle * 0.5)
+        }
+    );
+}
+
+return points;
+}
+ctx.translate(points[1].x, points[1].y);   // translate the origin for rotation
+ctx.rotate(angle);                         // rotate around the angle (radians)
+ctx.translate(-points[1].x, -points[1].y); // translate back
+
+ctx.beginPath();                           // start a new path
+ctx.moveTo(points[0].x, points[0].y);      // starting point
+for(var i = 1, p; p = points[i++];)
+  ctx.lineTo(p.x, p.y);                  // add points to the path
+ctx.fill();                                // close and fill the object

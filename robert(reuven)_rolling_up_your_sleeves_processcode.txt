@@ -1,0 +1,89 @@
+void setup() {
+  size(500, 900);
+  background(203,65,84);
+
+  // body dimension
+  float houseWidth = width * .6;
+  float houseHeight = height * .4;
+  
+ 
+  float deltaWidth = width - houseWidth;
+  float deltaHeight = height - houseHeight;
+  
+  // head layer
+  pushMatrix();
+  translate(80, 80);
+  fill(255,235,205);
+  ellipse(170, 360, 200, 200);
+  fill(193,154,107);
+  ellipse(125, 340, 25, 40);
+  fill(193,154,107);
+  ellipse(200, 340, 25, 40);
+  popMatrix();
+  
+  // Detail layer
+  //left side 
+  pushMatrix();
+  translate(80, 80);
+  fill(85);
+  rect(180, 340, 3, 25);
+  fill(85);
+  rect(220, 340, 3, 25);  
+  fill(85);
+  rect(180, 340, 40, 3);  
+  fill(85);
+  rect(180, 365, 43, 3);  
+  fill(85);
+  //right side
+  rect(100, 340, 3, 25);
+  fill(85);
+  rect(140, 340, 3, 25);  
+  fill(85);
+  rect(100, 340, 40, 3);  
+  fill(85);
+  rect(100, 365, 43, 3);  
+  popMatrix();
+  //details
+  fill(85);
+  rect(300, 430, 50, 3);
+  fill(85);
+  rect(150, 430, 30, 3);  
+  fill(85);
+  rect(220, 430, 40, 3);    
+  //mouth layer
+  fill(255,228,225);
+  ellipse(245, 480, 45, 30);
+  //hat layer
+  fill(211,211,211);
+  ellipse(250,350,190, 90);
+  fill(211,211,211);
+  rect(155,350,190,45);
+  fill(0,0,0);
+  rect(177,321,1,73);
+;
+  
+  /**
+  float headWidth = width * .5;
+  float headHeight = height * .2;
+ 
+  float deltaheadWidth = width - headWidth;
+  float deltaheadHeight = height/2 - headHeight/10;
+  
+  // eye1 layer
+  float lefteyeWidth = width * .5;
+  float lefteyeHeight = height * .2;
+ 
+  float deltalefteyeWidth = width - lefteyeWidth;
+  float deltalefteyeHeight = height/2 - lefteyeHeight/10;
+  */
+  
+  //draw body
+  strokeWeight(5);
+  noStroke();
+  fill(100, 50, 20);
+  rect(deltaWidth/2, deltaHeight, houseWidth, houseHeight);
+
+
+
+
+}

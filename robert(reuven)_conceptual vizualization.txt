@@ -1,0 +1,93 @@
+
+//variables
+float birthRate = .4; //couldn't get this to reproduce
+float particleCountCurrent = 0; 
+int particleCount = 50; //only runs one particle for some reason
+float[] x = new float[particleCount];
+float[] y = new float[particleCount];
+int[] sideCount = new int[particleCount];
+float[] radius = new float[particleCount];
+float[] speedX = new float[particleCount];
+float[] speedY = new float[particleCount];
+float[] gravity = new float[particleCount];
+float[] damping = new float[particleCount];
+float[] friction = new float[particleCount];
+
+void setup() {
+  size(1000,800);
+  for (int i = 0 ; i < particleCount; i += 1) {
+  x[0] = random(100, width-100);
+  y[0] = random(10, 30); //this will place shape in center
+  sideCount[i] = int(random(3, 10));
+  speedX[0] = random(-1.2, 1.2);
+  speedY[0] = random(7, -10);
+  radius[0] = random(1, 4);
+  gravity[0] = .03;
+  damping[0] = .77;
+  friction[0] = .77;
+  }
+}
+
+void draw () {
+  //background(0);
+  fill(0, 20); //pretty transparent color
+  noStroke();
+  rect(-1,-1, width, height); //will fill space
+  //polygon - intial shape
+  for (int i=0; i< particleCountCurrent; i += 1) {
+  polygon(x[i], y[i], radius[i], sideCount[i], 2, color(255, 0, 0));
+  x[i] += speedX[i];
+  speedY[i] += gravity[i];
+  y[i] += speedY[i];
+
+  rect(x[i], y[i], radius[i], radius[i], color(255, 0, 0)); //produces square targeting onto the particle produced
+
+  checkCollisions(i);
+}
+  if(particleCountCurrent < particleCount - birthRate) {
+  particleCountCurrent += birthRate;
+  }
+}
+
+
+
+
+//draw pologyon shape
+void polygon(float x, float y, float radius, int sides, float strokeWt, color strokeCol) {;
+  float theta = 0;
+  strokeWeight(strokeWt);
+  float rotAmount = TWO_PI/sides;
+  stroke(strokeCol);
+  //nofill();
+  beginShape();
+  float x2=0, y2=0;
+  for(int i = 0; i < sides; i += 1) {
+  x2 = x + cos(theta)*radius*2;
+  y2 = y + sin(theta)*radius*2;
+  vertex(x2, y2);
+  theta += rotAmount;
+  }
+  endShape(CLOSE);
+}
+
+
+void checkCollisions(int i) {
+  if(x[i] > width - radius[i]) {
+  x[i] = width - radius[i];
+  speedX[i] = speedX[i] * -1;
+  }
+  if(x[i] < radius[i]) {
+  x[i] = radius[i];
+  speedX[i] = speedX[i] * -1;
+  }
+  if(y[i] > height - radius[i]) {
+  y[i] = height - radius[i];
+  speedY[i] = speedY[i] * -1;
+  speedY[i] *= damping[i];
+  speedX[i] *= friction[i];
+  }
+  if(y[i] < radius[i]) {
+  y[i] = radius[i];
+  speedY[i] = speedY[i] * -1;
+  }
+} 

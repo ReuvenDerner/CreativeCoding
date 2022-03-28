@@ -1,0 +1,133 @@
+//tab 1
+//define Particle 1
+float x1, y1;
+float x2, y2;
+float x3, y3;
+float x4, y4;
+float x5, y5;
+float speedX1 = 3.11519, speedY1 = 5.99;
+float speedX2 = 3.141519, speedY2 = 5.99;
+float speedX3 = 4.141519, speedY3 = 6.99;
+float speedX4 = 4.141519, speedY4 = 6.99;
+float speedX5 = 5.11519, speedY5 = 7.99;
+float radius = 10;
+
+
+void setup() {
+  size(800, 600);
+  background(0);
+  x1 = width/2;
+  x2 = width/3;
+  x3 = width/4;
+  x4 = width/5;
+  x5 = width/6;
+  y1 = 0;
+  y2 = 0;
+  y3 = 0;
+  y4 = 0;
+  y5 = 50;
+}
+
+void draw() {
+  //background(255);
+  polygon();
+  
+  x1 = x1 + speedX1;
+  y1 = y1 + speedY1;
+
+  x2 = x2 + speedX2;
+  y2 = y2 + speedY2;
+  
+  x3 = x3 + speedX3;
+  y3 = y3 + speedY3;
+ 
+  x4 = x4 + speedX4;
+  y4 = y4 + speedY4;
+   
+  x5 = x5 + speedX5;
+  y5 = y5 + speedY5;
+
+  checkCollisions();
+}
+
+
+
+void checkCollisions(){ 
+  if (x1 > width - radius) {
+    //make it bounce off\
+    speedX1 = speedX1 * -1;
+    //speedX = -speedX;
+  }
+  if (x1 < 0){
+    speedX1 = speedX1 * -1;
+  }
+  if (y1 > height) {
+    speedY1 = speedY1 * -1;
+  }
+    if (y1 < 0) {
+    speedY1 = speedY1 * -1;
+  }
+    if (x2 > width - radius) {
+    //make it bounce off\
+    speedX2 = speedX2 * -1;
+    //speedX = -speedX;
+  }
+  if (x2 < 0){
+    speedX2 = speedX2 * -1;
+  }
+  if (y2 > height) {
+    speedY2 = speedY2 * -1;
+  }
+    if (y2 < 0) {
+    speedY2 = speedY2 * -1;
+  }
+  if (x3 > width - radius) {
+    //make it bounce off\
+    speedX3 = speedX3 * -1;
+    //speedX = -speedX;
+  }
+  if (x3 < 0){
+    speedX3 = speedX3 * -1;
+  }
+  if (y3 > height) {
+    speedY3 = speedY2 * -1;
+  }
+    if (y3 < 0) {
+    speedY3 = speedY3 * -1;
+  }
+  if (x4 > width - radius) {
+    //make it bounce off\
+    speedX4 = speedX4 * -1;
+    //speedX = -speedX;
+  }
+  if (x4 < 0){
+    speedX4 = speedX4 * -1;
+  }
+  if (y4 > height) {
+    speedY4 = speedY4 * -1;
+  }
+    if (y4 < 0) {
+    speedY4 = speedY4 * -1;
+  }
+  if (x5 > width - radius) {
+    //make it bounce off\
+    speedX5 = speedX5 * -1;
+    //speedX = -speedX;
+  }
+  if (x5 < 0){
+    speedX5 = speedX5 * -1;
+  }
+  if (y5 > height) {
+
+
+
+
+// Tab 2
+V
+
+    speedY5 = speedY5 * -1;
+  }
+    if (y5 < 0) {
+    speedY5 = speedY5 * -1;
+  }
+}
